@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "barksh",
+        "codecov",
+        "Sudoo",
+        "triforce",
+        "WMXPY"
+    ],
+    "eslint.options": {
+        "configFile": "./typescript/.eslintrc.json"
+    }
+}
