@@ -4,17 +4,26 @@
  * @description Authentication Module
  */
 
-import { getCloudFlareDNS, GetCloudFlareDNSResponse } from "../proxy/cloudflare";
+import { BarkBrowserDNSBaseProvider } from "../provider/base";
+import { BarkBrowserDNSProxyMethod, BarkBrowserDNSProxyResponse } from "../proxy/declare";
+
+const DNS_RECORD_NAME: string = '_bark-module-authentication-v1';
 
 export const getAuthenticationModuleV1WithDNSProxy = async (
-    domain: string,
+    domainName: string,
+    provider: BarkBrowserDNSBaseProvider,
+    proxy: BarkBrowserDNSProxyMethod,
 ): Promise<string> => {
 
     const authenticationModuleDomain: string =
-        `_bark-module-authentication-v1.${domain}`;
+        `${DNS_RECORD_NAME}.${domainName}`;
 
-    const dnsResponse: GetCloudFlareDNSResponse =
-        await getCloudFlareDNS(authenticationModuleDomain, 'CNAME');
+    const dnsResponse: BarkBrowserDNSProxyResponse =
+        await proxy(
+            authenticationModuleDomain,
+            'CNAME',
+            provider,
+        );
 
     const answer: string = dnsResponse.answer;
 

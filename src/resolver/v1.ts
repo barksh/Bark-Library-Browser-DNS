@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Resolver
- * @description Resolver
+ * @description V1
  */
 
 import { BarkBrowserDNSBaseProvider } from "../provider/base";
