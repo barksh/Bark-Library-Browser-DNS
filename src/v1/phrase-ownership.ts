@@ -5,25 +5,34 @@
  */
 
 import { BarkDNSResolverBaseProvider } from "../provider/base";
+import { validateDomainName } from "../util/domain";
 
 const DNS_RECORD_NAME: string = '_bark-phrase-ownership-v1';
 
 export const getPhraseOwnershipV1WithDNSProxy = async (
     domain: string,
     provider: BarkDNSResolverBaseProvider,
-): Promise<string> => {
+): Promise<string[]> => {
 
     const phraseOwnershipDomain: string =
         `${DNS_RECORD_NAME}.${domain}`;
 
-    const dnsResponse: string =
-        await provider.resolveDNS(
-            phraseOwnershipDomain,
-            'TXT',
-        );
+    try {
 
-    if (dnsResponse.endsWith('.')) {
-        return dnsResponse.slice(0, -1);
+        const dnsResponse: string =
+            await provider.resolveDNS(
+                phraseOwnershipDomain,
+                'TXT',
+            );
+
+        const domainList: string[] = dnsResponse
+            .split(',')
+            .map((each: string) => each.trim())
+            .filter((each: string) => validateDomainName(each));
+
+        return domainList;
+    } catch (error) {
+
+        return [];
     }
-    return dnsResponse;
 };
