@@ -14,6 +14,7 @@
   "homepage": "https://github.com/BarkSH/Bark-Library-DNS-Resolver#readme",
   "dependencies": {
     "@sudoo/magic": "^1.9.0",
+    "@sudoo/url": "^1.5.1",
     "connor": "^2.8.0"
   },
   "devDependencies": {

@@ -51,7 +51,10 @@ export class BarkDNSResolverProviderBrowserFetchCloudflare extends BarkDNSResolv
         this._fetchMethod = fetchMethod;
     }
 
-    public async resolveDNS(domainName: string, type: BarkDNSResolverProxyType): Promise<string> {
+    public async resolveDNS(
+        domainName: string,
+        type: BarkDNSResolverProxyType,
+    ): Promise<string> {
 
         const jsonResponse: GetCloudFlareDNSRawResponse =
             await this._sendGetJsonRequest(

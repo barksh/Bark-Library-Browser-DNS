@@ -6,6 +6,8 @@
 
 import { BarkDNSResolverBaseProvider } from "../provider/base";
 import { BarkDNSResolverProviderBrowserFetchCloudflare } from "../provider/browser-fetch-cloudflare";
+import { BrowserFetchLikeMethod } from "../provider/declare";
+import { BarkDNSResolverProviderNodeDNS } from "../provider/node-dns";
 import { BarkDNSResolverV1 } from "./v1";
 
 export class BarkDNSResolver {
@@ -17,10 +19,19 @@ export class BarkDNSResolver {
         return new BarkDNSResolver(provider);
     }
 
-    public static withBrowserDefault(): BarkDNSResolver {
+    public static withBrowserDefault(
+        fetchMethod?: BrowserFetchLikeMethod,
+    ): BarkDNSResolver {
 
         return BarkDNSResolver.withProvider(
-            BarkDNSResolverProviderBrowserFetchCloudflare.create(),
+            BarkDNSResolverProviderBrowserFetchCloudflare.create(fetchMethod),
+        );
+    }
+
+    public static withNodeDefault(): BarkDNSResolver {
+
+        return BarkDNSResolver.withProvider(
+            BarkDNSResolverProviderNodeDNS.create(),
         );
     }
 
