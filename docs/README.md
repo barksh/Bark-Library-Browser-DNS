@@ -1,16 +1,16 @@
-# Bark-Library-Browser-DNS
+# Bark-Library-DNS-Resolver
 
-[![Continuous Integration](https://github.com/BarkSH/Bark-Library-Browser-DNS/actions/workflows/ci.yml/badge.svg)](https://github.com/BarkSH/Bark-Library-Browser-DNS/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/BarkSH/Bark-Library-Browser-DNS/branch/main/graph/badge.svg)](https://codecov.io/gh/BarkSH/Bark-Library-Browser-DNS)
-[![npm version](https://badge.fury.io/js/%40barksh%2FBrowser-DNS.svg)](https://www.npmjs.com/package/@barksh/Browser-DNS)
-[![downloads](https://img.shields.io/npm/dm/@barksh/Browser-DNS.svg)](https://www.npmjs.com/package/@barksh/Browser-DNS)
+[![Continuous Integration](https://github.com/BarkSH/Bark-Library-DNS-Resolver/actions/workflows/ci.yml/badge.svg)](https://github.com/BarkSH/Bark-Library-DNS-Resolver/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/BarkSH/Bark-Library-DNS-Resolver/branch/main/graph/badge.svg)](https://codecov.io/gh/BarkSH/Bark-Library-DNS-Resolver)
+[![npm version](https://badge.fury.io/js/%40barksh%2FDNS-Resolver.svg)](https://www.npmjs.com/package/@barksh/DNS-Resolver)
+[![downloads](https://img.shields.io/npm/dm/@barksh/DNS-Resolver.svg)](https://www.npmjs.com/package/@barksh/DNS-Resolver)
 
-DNS Browser Library for Bark
+DNS Resolver Library for Bark
 
 ## Install
 
 ```sh
-yarn add @barksh/browser-dns
+yarn add @barksh/dns-resolver
 # Or
-npm install @barksh/browser-dns --save
+npm install @barksh/dns-resolver --save
 ```

@@ -4,7 +4,7 @@
  * @description Base
  */
 
-export abstract class BarkBrowserDNSBaseProvider {
+export abstract class BarkDNSResolverBaseProvider {
 
     public abstract sendGetJsonRequest<T extends Record<string, any>>(
         url: string,

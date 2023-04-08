@@ -4,65 +4,35 @@
  * @description V1
  */
 
-import { BarkBrowserDNSBaseProvider } from "../provider/base";
-import { BarkBrowserDNSBrowserFetchProvider } from "../provider/browser-fetch";
-import { cloudFlareDNSProxy } from "../proxy/cloudflare";
-import { BarkBrowserDNSProxyMethod } from "../proxy/declare";
+import { BarkDNSResolverBaseProvider } from "../provider/base";
+import { BarkDNSResolverProxyMethod } from "../proxy/declare";
 import { getAuthenticationModuleV1WithDNSProxy } from "../v1/authentication-module";
 
-export class BarkBrowserDNSResolver {
+export class BarkDNSResolverV1 {
 
     public static withProviderAndProxy(
-        provider: BarkBrowserDNSBaseProvider,
-        proxy: BarkBrowserDNSProxyMethod,
-    ): BarkBrowserDNSResolver {
+        provider: BarkDNSResolverBaseProvider,
+        proxy: BarkDNSResolverProxyMethod,
+    ): BarkDNSResolverV1 {
 
-        return new BarkBrowserDNSResolver(provider, proxy);
+        return new BarkDNSResolverV1(provider, proxy);
     }
 
-    public static withProviderAndDefaultProxy(
-        provider: BarkBrowserDNSBaseProvider,
-    ): BarkBrowserDNSResolver {
-
-        return new BarkBrowserDNSResolver(
-            provider,
-            cloudFlareDNSProxy,
-        );
-    }
-
-    public static withDefaultProviderAndProxy(
-        proxy: BarkBrowserDNSProxyMethod,
-    ): BarkBrowserDNSResolver {
-
-        return new BarkBrowserDNSResolver(
-            BarkBrowserDNSBrowserFetchProvider.create(),
-            proxy,
-        );
-    }
-
-    public static withDefault(): BarkBrowserDNSResolver {
-
-        return new BarkBrowserDNSResolver(
-            BarkBrowserDNSBrowserFetchProvider.create(),
-            cloudFlareDNSProxy,
-        );
-    }
-
-    private readonly _provider: BarkBrowserDNSBaseProvider;
-    private readonly _proxy: BarkBrowserDNSProxyMethod;
+    private readonly _provider: BarkDNSResolverBaseProvider;
+    private readonly _proxy: BarkDNSResolverProxyMethod;
 
     private constructor(
-        provider: BarkBrowserDNSBaseProvider,
-        proxy: BarkBrowserDNSProxyMethod,
+        provider: BarkDNSResolverBaseProvider,
+        proxy: BarkDNSResolverProxyMethod,
     ) {
 
         this._provider = provider;
         this._proxy = proxy;
     }
 
-    public authenticationModuleV1(domainName: string): Promise<string> {
+    public async resolveAuthenticationModule(domainName: string): Promise<string> {
 
-        return getAuthenticationModuleV1WithDNSProxy(
+        return await getAuthenticationModuleV1WithDNSProxy(
             domainName,
             this._provider,
             this._proxy,

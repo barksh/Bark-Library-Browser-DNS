@@ -7,13 +7,13 @@
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { ERROR_CODE } from "../error/code";
 import { panic } from "../error/panic";
-import { BarkBrowserDNSBaseProvider } from "./base";
+import { BarkDNSResolverBaseProvider } from "./base";
 
-export class BarkBrowserDNSBrowserFetchProvider extends BarkBrowserDNSBaseProvider {
+export class BarkDNSResolverBrowserFetchProvider extends BarkDNSResolverBaseProvider {
 
-    public static create(): BarkBrowserDNSBrowserFetchProvider {
+    public static create(): BarkDNSResolverBrowserFetchProvider {
 
-        return new BarkBrowserDNSBrowserFetchProvider();
+        return new BarkDNSResolverBrowserFetchProvider();
     }
 
     public async sendGetJsonRequest<T extends Record<string, any>>(

@@ -1,17 +1,17 @@
 {
-  "name": "@barksh/browser-dns",
+  "name": "@barksh/dns-resolver",
   "version": "1.0.0",
-  "description": "DNS Browser Library for Bark",
+  "description": "DNS Resolver Library for Bark",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BarkSH/Bark-Library-Browser-DNS.git"
+    "url": "git+https://github.com/BarkSH/Bark-Library-DNS-Resolver.git"
   },
   "author": "WMXPY",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BarkSH/Bark-Library-Browser-DNS/issues"
+    "url": "https://github.com/BarkSH/Bark-Library-DNS-Resolver/issues"
   },
-  "homepage": "https://github.com/BarkSH/Bark-Library-Browser-DNS#readme",
+  "homepage": "https://github.com/BarkSH/Bark-Library-DNS-Resolver#readme",
   "dependencies": {
     "@sudoo/magic": "^1.9.0",
     "connor": "^2.8.0"

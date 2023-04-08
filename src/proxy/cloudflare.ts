@@ -6,8 +6,8 @@
 
 import { ERROR_CODE } from "../error/code";
 import { panic } from "../error/panic";
-import { BarkBrowserDNSBaseProvider } from "../provider/base";
-import { BarkBrowserDNSProxyMethod, BarkBrowserDNSProxyResponse, BarkBrowserDNSProxyType } from "./declare";
+import { BarkDNSResolverBaseProvider } from "../provider/base";
+import { BarkDNSResolverProxyMethod, BarkDNSResolverProxyResponse, BarkDNSResolverProxyType } from "./declare";
 
 type GetCloudFlareDNSRawResponse = {
 
@@ -30,11 +30,11 @@ type GetCloudFlareDNSRawResponse = {
     }>;
 };
 
-export const cloudFlareDNSProxy: BarkBrowserDNSProxyMethod = async (
+export const cloudFlareDNSProxy: BarkDNSResolverProxyMethod = async (
     domainName: string,
-    type: BarkBrowserDNSProxyType,
-    provider: BarkBrowserDNSBaseProvider,
-): Promise<BarkBrowserDNSProxyResponse> => {
+    type: BarkDNSResolverProxyType,
+    provider: BarkDNSResolverBaseProvider,
+): Promise<BarkDNSResolverProxyResponse> => {
 
     const jsonResponse: GetCloudFlareDNSRawResponse = await provider.sendGetJsonRequest(`https://cloudflare-dns.com/dns-query?name=${domainName}&type=${type}`);
 

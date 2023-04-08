@@ -4,17 +4,17 @@
  * @description Declare
  */
 
-import { BarkBrowserDNSBaseProvider } from "../provider/base";
+import { BarkDNSResolverBaseProvider } from "../provider/base";
 
-export type BarkBrowserDNSProxyType = 'A' | 'AAAA' | 'CNAME' | 'MX' | 'NS' | 'PTR' | 'SOA' | 'SRV' | 'TXT';
+export type BarkDNSResolverProxyType = 'A' | 'AAAA' | 'CNAME' | 'MX' | 'NS' | 'PTR' | 'SOA' | 'SRV' | 'TXT';
 
-export type BarkBrowserDNSProxyResponse = {
+export type BarkDNSResolverProxyResponse = {
 
     readonly answer: string;
 };
 
-export type BarkBrowserDNSProxyMethod = (
+export type BarkDNSResolverProxyMethod = (
     domainName: string,
-    type: BarkBrowserDNSProxyType,
-    provider: BarkBrowserDNSBaseProvider,
-) => Promise<BarkBrowserDNSProxyResponse>;
+    type: BarkDNSResolverProxyType,
+    provider: BarkDNSResolverBaseProvider,
+) => Promise<BarkDNSResolverProxyResponse>;

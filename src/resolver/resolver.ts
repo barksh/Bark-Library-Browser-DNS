@@ -4,66 +4,65 @@
  * @description Resolver
  */
 
-import { BarkBrowserDNSBaseProvider } from "../provider/base";
-import { BarkBrowserDNSBrowserFetchProvider } from "../provider/browser-fetch";
+import { BarkDNSResolverBaseProvider } from "../provider/base";
+import { BarkDNSResolverBrowserFetchProvider } from "../provider/browser-fetch";
 import { cloudFlareDNSProxy } from "../proxy/cloudflare";
-import { BarkBrowserDNSProxyMethod } from "../proxy/declare";
-import { getAuthenticationModuleV1WithDNSProxy } from "../v1/authentication-module";
+import { BarkDNSResolverProxyMethod } from "../proxy/declare";
+import { BarkDNSResolverV1 } from "./v1";
 
-export class BarkBrowserDNSResolver {
+export class BarkDNSResolver {
 
     public static withProviderAndProxy(
-        provider: BarkBrowserDNSBaseProvider,
-        proxy: BarkBrowserDNSProxyMethod,
-    ): BarkBrowserDNSResolver {
+        provider: BarkDNSResolverBaseProvider,
+        proxy: BarkDNSResolverProxyMethod,
+    ): BarkDNSResolver {
 
-        return new BarkBrowserDNSResolver(provider, proxy);
+        return new BarkDNSResolver(provider, proxy);
     }
 
     public static withProviderAndDefaultProxy(
-        provider: BarkBrowserDNSBaseProvider,
-    ): BarkBrowserDNSResolver {
+        provider: BarkDNSResolverBaseProvider,
+    ): BarkDNSResolver {
 
-        return new BarkBrowserDNSResolver(
+        return new BarkDNSResolver(
             provider,
             cloudFlareDNSProxy,
         );
     }
 
     public static withDefaultProviderAndProxy(
-        proxy: BarkBrowserDNSProxyMethod,
-    ): BarkBrowserDNSResolver {
+        proxy: BarkDNSResolverProxyMethod,
+    ): BarkDNSResolver {
 
-        return new BarkBrowserDNSResolver(
-            BarkBrowserDNSBrowserFetchProvider.create(),
+        return new BarkDNSResolver(
+            BarkDNSResolverBrowserFetchProvider.create(),
             proxy,
         );
     }
 
-    public static withDefault(): BarkBrowserDNSResolver {
+    public static withDefault(): BarkDNSResolver {
 
-        return new BarkBrowserDNSResolver(
-            BarkBrowserDNSBrowserFetchProvider.create(),
+        return new BarkDNSResolver(
+            BarkDNSResolverBrowserFetchProvider.create(),
             cloudFlareDNSProxy,
         );
     }
 
-    private readonly _provider: BarkBrowserDNSBaseProvider;
-    private readonly _proxy: BarkBrowserDNSProxyMethod;
+    private readonly _provider: BarkDNSResolverBaseProvider;
+    private readonly _proxy: BarkDNSResolverProxyMethod;
 
     private constructor(
-        provider: BarkBrowserDNSBaseProvider,
-        proxy: BarkBrowserDNSProxyMethod,
+        provider: BarkDNSResolverBaseProvider,
+        proxy: BarkDNSResolverProxyMethod,
     ) {
 
         this._provider = provider;
         this._proxy = proxy;
     }
 
-    public authenticationModuleV1(domainName: string): Promise<string> {
+    public get V1() {
 
-        return getAuthenticationModuleV1WithDNSProxy(
-            domainName,
+        return BarkDNSResolverV1.withProviderAndProxy(
             this._provider,
             this._proxy,
         );
