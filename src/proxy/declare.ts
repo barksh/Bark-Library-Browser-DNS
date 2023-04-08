@@ -4,23 +4,17 @@
  * @description Declare
  */
 
-export type GetCloudFlareDNSRawResponse = {
+import { BarkBrowserDNSBaseProvider } from "../provider/base";
 
-    readonly Status: 0 | 3;
-    readonly TC: boolean;
-    readonly RD: boolean;
-    readonly RA: boolean;
-    readonly AD: boolean;
-    readonly CD: boolean;
+export type BarkBrowserDNSProxyType = 'A' | 'AAAA' | 'CNAME' | 'MX' | 'NS' | 'PTR' | 'SOA' | 'SRV' | 'TXT';
 
-    readonly Question: Array<{
-        readonly name: string;
-        readonly type: 5;
-    }>;
-    readonly Answer: Array<{
-        readonly name: string;
-        readonly type: 5;
-        readonly TTL: number;
-        readonly data: string;
-    }>;
+export type BarkBrowserDNSProxyResponse = {
+
+    readonly answer: string;
 };
+
+export type BarkBrowserDNSProxyMethod = (
+    domainName: string,
+    type: BarkBrowserDNSProxyType,
+    provider: BarkBrowserDNSBaseProvider,
+) => Promise<BarkBrowserDNSProxyResponse>;
