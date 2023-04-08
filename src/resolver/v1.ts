@@ -5,7 +5,6 @@
  */
 
 import { BarkDNSResolverBaseProvider } from "../provider/base";
-import { BarkDNSResolverProxyMethod } from "../proxy/declare";
 import { getAuthenticationModuleV1WithDNSProxy } from "../v1/authentication-module";
 import { getAuthenticationUIV1WithDNSProxy } from "../v1/authentication-ui";
 import { getPhraseOwnershipV1WithDNSProxy } from "../v1/phrase-ownership";
@@ -14,22 +13,18 @@ export class BarkDNSResolverV1 {
 
     public static withProviderAndProxy(
         provider: BarkDNSResolverBaseProvider,
-        proxy: BarkDNSResolverProxyMethod,
     ): BarkDNSResolverV1 {
 
-        return new BarkDNSResolverV1(provider, proxy);
+        return new BarkDNSResolverV1(provider);
     }
 
     private readonly _provider: BarkDNSResolverBaseProvider;
-    private readonly _proxy: BarkDNSResolverProxyMethod;
 
     private constructor(
         provider: BarkDNSResolverBaseProvider,
-        proxy: BarkDNSResolverProxyMethod,
     ) {
 
         this._provider = provider;
-        this._proxy = proxy;
     }
 
     public async resolveAuthenticationModule(domainName: string): Promise<string> {
@@ -37,7 +32,6 @@ export class BarkDNSResolverV1 {
         return await getAuthenticationModuleV1WithDNSProxy(
             domainName,
             this._provider,
-            this._proxy,
         );
     }
 
@@ -46,7 +40,6 @@ export class BarkDNSResolverV1 {
         return await getAuthenticationUIV1WithDNSProxy(
             domainName,
             this._provider,
-            this._proxy,
         );
     }
 
@@ -55,7 +48,6 @@ export class BarkDNSResolverV1 {
         return await getPhraseOwnershipV1WithDNSProxy(
             domainName,
             this._provider,
-            this._proxy,
         );
     }
 }

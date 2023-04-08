@@ -4,9 +4,12 @@
  * @description Base
  */
 
+import { BarkDNSResolverProxyType } from "./declare";
+
 export abstract class BarkDNSResolverBaseProvider {
 
-    public abstract sendGetJsonRequest<T extends Record<string, any>>(
-        url: string,
-    ): Promise<T>;
+    public abstract resolveDNS(
+        domainName: string,
+        type: BarkDNSResolverProxyType,
+    ): Promise<string>;
 }
