@@ -7,6 +7,8 @@
 import { BarkDNSResolverBaseProvider } from "../provider/base";
 import { BarkDNSResolverProxyMethod } from "../proxy/declare";
 import { getAuthenticationModuleV1WithDNSProxy } from "../v1/authentication-module";
+import { getAuthenticationUIV1WithDNSProxy } from "../v1/authentication-ui";
+import { getPhraseOwnershipV1WithDNSProxy } from "../v1/phrase-ownership";
 
 export class BarkDNSResolverV1 {
 
@@ -33,6 +35,24 @@ export class BarkDNSResolverV1 {
     public async resolveAuthenticationModule(domainName: string): Promise<string> {
 
         return await getAuthenticationModuleV1WithDNSProxy(
+            domainName,
+            this._provider,
+            this._proxy,
+        );
+    }
+
+    public async resolveAuthenticationUI(domainName: string): Promise<string> {
+
+        return await getAuthenticationUIV1WithDNSProxy(
+            domainName,
+            this._provider,
+            this._proxy,
+        );
+    }
+
+    public async resolvePhraseOwnership(domainName: string): Promise<string> {
+
+        return await getPhraseOwnershipV1WithDNSProxy(
             domainName,
             this._provider,
             this._proxy,

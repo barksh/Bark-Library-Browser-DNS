@@ -9,7 +9,7 @@ import { BarkDNSResolverProxyMethod, BarkDNSResolverProxyResponse } from "../pro
 
 const DNS_RECORD_NAME: string = '_bark-phrase-ownership-v1';
 
-export const getParseOwnershipV1WithDNSProxy = async (
+export const getPhraseOwnershipV1WithDNSProxy = async (
     domain: string,
     provider: BarkDNSResolverBaseProvider,
     proxy: BarkDNSResolverProxyMethod,

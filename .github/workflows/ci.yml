@@ -30,15 +30,15 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install @sudoo/build-cli -g
-          sudoo-build install
+          sudoo-build --type typescript-react install
       - name: Lint
         run: |
-          sudoo-build lint
+          sudoo-build --type typescript-react lint
       - name: Build
         run: |
-          sudoo-build build
+          sudoo-build --type typescript-react build
       - name: Test
         run: |
-          sudoo-build coverage
+          sudoo-build --type typescript-react coverage
       - name: Codecov
         uses: codecov/codecov-action@v3
