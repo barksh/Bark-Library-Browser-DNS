@@ -19,7 +19,7 @@ describe("Given (Phrase Ownership) testing cases", (): void => {
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith("first.com");
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+        const result: string[] = await resolver.V1.resolvePhraseOwnership("first.com");
 
         expect(result).to.be.deep.equal([
             "first.com",
@@ -31,10 +31,9 @@ describe("Given (Phrase Ownership) testing cases", (): void => {
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith("second.com");
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+        const result: string[] = await resolver.V1.resolvePhraseOwnership("first.com");
 
         expect(result).to.be.deep.equal([
-            "first.com",
             "second.com",
         ]);
     });
@@ -44,10 +43,9 @@ describe("Given (Phrase Ownership) testing cases", (): void => {
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith("second.com,third.com");
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+        const result: string[] = await resolver.V1.resolvePhraseOwnership("first.com");
 
         expect(result).to.be.deep.equal([
-            "first.com",
             "second.com",
             "third.com",
         ]);
@@ -58,10 +56,9 @@ describe("Given (Phrase Ownership) testing cases", (): void => {
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith(" second.com, third.com  ");
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+        const result: string[] = await resolver.V1.resolvePhraseOwnership("first.com");
 
         expect(result).to.be.deep.equal([
-            "first.com",
             "second.com",
             "third.com",
         ]);
@@ -72,11 +69,9 @@ describe("Given (Phrase Ownership) testing cases", (): void => {
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith(chance.string());
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+        const result: string[] = await resolver.V1.resolvePhraseOwnership("first.com");
 
-        expect(result).to.be.deep.equal([
-            "first.com",
-        ]);
+        expect(result).to.be.deep.equal([]);
     });
 
     it("should be able to resolve phrase ownership with throw result", async (): Promise<void> => {
@@ -84,10 +79,8 @@ describe("Given (Phrase Ownership) testing cases", (): void => {
         const provider: BarkDNSResolverBaseProvider = MockProvider.toThrow(new Error("error"));
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+        const result: string[] = await resolver.V1.resolvePhraseOwnership("first.com");
 
-        expect(result).to.be.deep.equal([
-            "first.com",
-        ]);
+        expect(result).to.be.deep.equal([]);
     });
 });
