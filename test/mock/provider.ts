@@ -9,26 +9,40 @@ import { BarkDNSResolverBaseProvider } from "../../src";
 
 export class MockProvider extends BarkDNSResolverBaseProvider {
 
-    public static create(
+    public static toCompleteWith(
         response: string,
     ): MockProvider {
 
         return new MockProvider(response);
     }
 
-    private readonly _response: string;
+    public static toThrow(
+        error: Error,
+    ): MockProvider {
+
+        return new MockProvider(null, error);
+    }
+
+    private readonly _response: string | null;
+    private readonly _error?: Error;
 
     private constructor(
-        response: string,
+        response: string | null,
+        error?: Error,
     ) {
 
         super();
 
         this._response = response;
+        this._error = error;
     }
 
     public async resolveDNS(): Promise<string> {
 
-        return this._response;
+        if (this._error) {
+            throw this._error;
+        }
+
+        return this._response as string;
     }
 }
