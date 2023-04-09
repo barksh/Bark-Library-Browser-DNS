@@ -44,7 +44,7 @@ export class BarkDNSResolver {
         this._provider = provider;
     }
 
-    public get V1() {
+    public get V1(): BarkDNSResolverV1 {
 
         return BarkDNSResolverV1.withProviderAndProxy(
             this._provider,
