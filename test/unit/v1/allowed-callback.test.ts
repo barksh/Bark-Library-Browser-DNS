@@ -12,8 +12,7 @@ import { MockProvider } from "../../mock/provider";
 
 describe("Given (Allowed Callback) testing cases", (): void => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const chance: Chance.Chance = new Chance("placeholder");
+    const chance: Chance.Chance = new Chance("v1-allowed-callback");
 
     it("should be able to resolve allowed callback with same record and domain", async (): Promise<void> => {
 
@@ -71,6 +70,18 @@ describe("Given (Allowed Callback) testing cases", (): void => {
     it("should be able to resolve allowed callback with multiple record and domain - with invalid domain", async (): Promise<void> => {
 
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith(chance.string());
+        const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
+
+        const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
+
+        expect(result).to.be.deep.equal([
+            "first.com",
+        ]);
+    });
+
+    it("should be able to resolve allowed callback with throw result", async (): Promise<void> => {
+
+        const provider: BarkDNSResolverBaseProvider = MockProvider.toThrow(new Error("error"));
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
         const result: string[] = await resolver.V1.resolveAllowedCallback("first.com");
