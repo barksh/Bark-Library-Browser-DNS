@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace V1
- * @description Authentication Module
+ * @description Authentication UI
  * @override Unit Test
  */
 
@@ -10,22 +10,22 @@ import * as Chance from "chance";
 import { BarkDNSResolver, BarkDNSResolverBaseProvider } from "../../../src";
 import { MockProvider } from "../../mock/provider";
 
-describe("Given (Authentication Module) testing cases", (): void => {
+describe("Given (Authentication UI) testing cases", (): void => {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const chance: Chance.Chance = new Chance("v1-authentication-module");
+    const chance: Chance.Chance = new Chance("v1-authentication-ui");
 
-    it("should be able to resolve authentication module", async (): Promise<void> => {
+    it("should be able to resolve authentication ui", async (): Promise<void> => {
 
         const provider: BarkDNSResolverBaseProvider = MockProvider.toCompleteWith("target.com");
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
 
-        const result: string = await resolver.V1.resolveAuthenticationModule("first.com");
+        const result: string = await resolver.V1.resolveAuthenticationUI("first.com");
 
         expect(result).to.be.equal("target.com");
     });
 
-    it("should be able to resolve authentication module with throw result", async (): Promise<void> => {
+    it("should be able to resolve authentication ui with throw result", async (): Promise<void> => {
 
         const provider: BarkDNSResolverBaseProvider = MockProvider.toThrow(new Error("error"));
         const resolver: BarkDNSResolver = BarkDNSResolver.withProvider(provider);
@@ -33,7 +33,7 @@ describe("Given (Authentication Module) testing cases", (): void => {
         let error: Error | null = null;
 
         try {
-            await resolver.V1.resolveAuthenticationModule("first.com");
+            await resolver.V1.resolveAuthenticationUI("first.com");
         } catch (err) {
             error = err as Error;
         }
