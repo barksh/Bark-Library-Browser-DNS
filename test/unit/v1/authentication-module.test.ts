@@ -12,6 +12,7 @@ import { MockProvider } from "../../mock/provider";
 
 describe("Given (Authentication Module) testing cases", (): void => {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const chance: Chance.Chance = new Chance("v1-authentication-module");
 
     it("should be able to resolve allowed callback with same record and domain", async (): Promise<void> => {

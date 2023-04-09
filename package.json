@@ -18,7 +18,9 @@
     "connor": "^2.8.0"
   },
   "devDependencies": {
-    "@sudoo/triforce": "^3.11.0"
+    "@sudoo/triforce": "^3.11.0",
+    "global-jsdom": "*",
+    "jsdom": "*"
   },
   "nyc": {
     "extension": [
