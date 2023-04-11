@@ -34,7 +34,7 @@ type GetCloudFlareDNSRawResponse = {
 export class BarkDNSResolverProviderBrowserFetchCloudflare extends BarkDNSResolverBaseProvider {
 
     public static create(
-        fetchMethod: BrowserFetchLikeMethod = fetch,
+        fetchMethod: BrowserFetchLikeMethod = window.fetch.bind(window),
     ): BarkDNSResolverProviderBrowserFetchCloudflare {
 
         return new BarkDNSResolverProviderBrowserFetchCloudflare(fetchMethod);
