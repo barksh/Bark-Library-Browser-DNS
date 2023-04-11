@@ -1,6 +1,6 @@
 {
   "name": "@barksh/dns-resolver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DNS Resolver Library for Bark",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   "homepage": "https://github.com/BarkSH/Bark-Library-DNS-Resolver#readme",
   "dependencies": {
     "@sudoo/magic": "^1.9.0",
-    "@sudoo/url": "^1.6.0",
+    "@sudoo/url": "^1.6.1",
     "connor": "^2.8.0"
   },
   "devDependencies": {
